@@ -1,0 +1,12 @@
+# 运行时依赖
+# ---------------------------------------------------------------
+# oci                —— Oracle 官方 Python SDK（本项目唯一的 OCI 接口）
+# python-telegram-bot —— Telegram Bot 框架（异步）
+# cryptography       —— 现场生成救援控制台的临时 RSA 密钥对
+#                       （oci 会间接装上它，但我们直接 import，所以显式声明）
+oci>=2.120.0
+python-telegram-bot>=21.0
+cryptography>=42.0
+
+# 可选依赖：只有你想用 S3 兼容 API 直连对象存储时才需要
+# boto3>=1.34.0

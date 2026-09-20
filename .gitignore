@@ -1,0 +1,76 @@
+# ============================================================
+#  密钥与凭据 —— 绝不允许进入版本库
+#  ⚠️ 本项目开源发布，以下任何一项被提交都会导致账号被接管
+# ============================================================
+
+# OCI API 私钥（所有形态）
+*.pem
+*.key
+*.priv
+oci_api_key*.pem
+si.pem
+si-*.pem
+
+# 账号清单（含 tenancy / user OCID）
+accounts.json
+accounts.*.json
+!accounts.example.json
+
+# Bot 生成的登录密钥对（<ORACLES_HOME>/keys/<账号>/login_key）
+# ⚠️ 上面那条 `*.key` **兜不住**它 —— 私钥文件叫 `login_key`，**没有扩展名**。
+#    默认 ORACLES_HOME 在仓库外（~/.oracles），但一旦有人把 ORACLES_HOME
+#    指到仓库内，这两个文件就会裸奔。所以这里按名字再兜一道。
+keys/
+login_key
+login_key.pub
+
+# 环境变量文件
+.env
+.env.*
+!.env.example
+bot.env
+*.env.local
+
+# 生产实际配置文件名（deploy/install.sh 生成的就是 `oracles.env`）
+# ⚠️ 2026-09-21 用 `git check-ignore` 实测发现它**没被上面任何一条兜住**：
+#    `.env` 匹配不到 `oracles.env`，`*.env.local` 也不行。
+#    模板 `oracles.env.example` 是另一个名字，不受影响（仍会被跟踪）。
+oracles.env
+
+# 运行期产物
+.work/
+backups/
+logs/
+*.log
+state/
+pending.json
+
+# S3 兼容凭据导出
+*credentials*.txt
+s3-*.txt
+
+# ---------- 语言/工具常规 ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.pytest_cache/
+.pytest_tmp/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.DS_Store
+# macOS 同步副产物（AppleDouble 元数据，不是源码）
+._*
+.idea/
+.vscode/
+*.swp

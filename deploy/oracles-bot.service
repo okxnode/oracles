@@ -1,0 +1,44 @@
+[Unit]
+Description=OCI 多账号管理台 (Telegram Bot)
+Documentation=https://github.com/okxnode/oracles
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=oracles
+Group=oracles
+WorkingDirectory=/opt/oracles
+
+# 所有密钥/开关都在这里，权限 600
+EnvironmentFile=/etc/oracles/oracles.env
+
+ExecStart=/opt/oracles/.venv/bin/python -m oracles
+
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=oracles-bot
+
+# ---- 权限加固 ----
+# 这个进程拿着你所有 OCI 账号的私钥，必须当成高价值目标对待
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+# 只有配置目录可写（审计备份要写在这里）
+ReadWritePaths=/etc/oracles
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+LockPersonality=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+# 注意：不加 MemoryDenyWriteExecute —— 某些 Python 扩展需要可写可执行内存
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,25 @@
+[
+  {
+    "index": 1,
+    "alias": "主账号",
+    "region": "ap-singapore-1",
+    "user": "ocid1.user.oc1..aaaaaaaaEXAMPLEreplacewithyourrealuserocid",
+    "fingerprint": "aa:bb:cc:dd:ee:ff:00:11:22:33:44:55:66:77:88:99",
+    "tenancy": "ocid1.tenancy.oc1..aaaaaaaaEXAMPLEreplacewithyourrealtenancyocid",
+    "key_file": "/etc/oracles/keys/oci_api_key.pem"
+  },
+  {
+    "index": 2,
+    "alias": "备用号A",
+    "region": "us-ashburn-1",
+    "user": "ocid1.user.oc1..aaaaaaaaEXAMPLEreplacewithyourrealuserocid",
+    "fingerprint": "aa:bb:cc:dd:ee:ff:00:11:22:33:44:55:66:77:88:99",
+    "tenancy": "ocid1.tenancy.oc1..aaaaaaaaEXAMPLEreplacewithyourrealtenancyocid"
+  },
+  {
+    "index": 3,
+    "alias": "本机实例主体认证",
+    "region": "sa-vinhedo-1",
+    "auth_mode": "instance_principal"
+  }
+]
